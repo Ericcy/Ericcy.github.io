@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面向对象," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ericcy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言当今 JavaScript 大行其道，各种应用对其依赖日深。web 程序员已逐渐习惯使用各种优秀的 JavaScript 框架快速开发 Web 应用，从而忽略了对原生 JavaScript 的学习和深入理解。所以，经常出现的情况是，很多做了多年 JS 开发的程序员对闭包、函数式编程、原型总是说不清道不明，即使使用了框架，其代码组织也非常糟糕。这都是对原生 JavaScript 语言特性理解不够">
+<meta name="keywords" content="面向对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全面理解面向对象的JavaScript">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/全面理解面向对象的JavaScript/index.html">
+<meta property="og:site_name" content="Ericcy">
+<meta property="og:description" content="前言当今 JavaScript 大行其道，各种应用对其依赖日深。web 程序员已逐渐习惯使用各种优秀的 JavaScript 框架快速开发 Web 应用，从而忽略了对原生 JavaScript 的学习和深入理解。所以，经常出现的情况是，很多做了多年 JS 开发的程序员对闭包、函数式编程、原型总是说不清道不明，即使使用了框架，其代码组织也非常糟糕。这都是对原生 JavaScript 语言特性理解不够">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/image001.png">
+<meta property="og:image" content="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/image003.png">
+<meta property="og:updated_time" content="2018-03-08T16:31:03.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="全面理解面向对象的JavaScript">
+<meta name="twitter:description" content="前言当今 JavaScript 大行其道，各种应用对其依赖日深。web 程序员已逐渐习惯使用各种优秀的 JavaScript 框架快速开发 Web 应用，从而忽略了对原生 JavaScript 的学习和深入理解。所以，经常出现的情况是，很多做了多年 JS 开发的程序员对闭包、函数式编程、原型总是说不清道不明，即使使用了框架，其代码组织也非常糟糕。这都是对原生 JavaScript 语言特性理解不够">
+<meta name="twitter:image" content="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/image001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    root: '/',
+    algolia: {
+      applicationID: 'E2MRL45953',
+      apiKey: 'fc124c8356606d7fa6c781253f763388',
+      indexName: 'index_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/08/全面理解面向对象的JavaScript/"/>
+
+
+
+
+
+  <title>全面理解面向对象的JavaScript | Ericcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ericcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">jsyang</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <!-- -->
+  <!-- 改为 -->
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+                <a href="javascript:;" class="popup-trigger">
+              
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+      <div class="algolia-popup popup">
+  <div class="algolia-search">
+    <div class="algolia-search-input-icon">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="algolia-search-input" id="algolia-search-input"></div>
+  </div>
+  <div class="algolia-results">
+    <div id="algolia-stats"></div>
+    <div id="algolia-hits"></div>
+    <div id="algolia-pagination" class="algolia-pagination"></div>
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+  
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/08/全面理解面向对象的JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ericcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">全面理解面向对象的JavaScript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T23:15:54+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当今 JavaScript 大行其道，各种应用对其依赖日深。web 程序员已逐渐习惯使用各种优秀的 JavaScript 框架快速开发 Web 应用，从而忽略了对原生 JavaScript 的学习和深入理解。所以，经常出现的情况是，很多做了多年 JS 开发的程序员对闭包、函数式编程、原型总是说不清道不明，即使使用了框架，其代码组织也非常糟糕。这都是对原生 JavaScript 语言特性理解不够的表现。要掌握好 JavaScript，首先一点是必须摒弃一些其他高级语言如 Java、C# 等类式面向对象思维的干扰，全面地从函数式语言的角度理解 JavaScript 原型式面向对象的特点。把握好这一点之后，才有可能进一步使用好这门语言。本文适合群体：使用过 JS 框架但对 JS 语言本质缺乏理解的程序员，具有 Java、C++ 等语言开发经验，准备学习并使用 JavaScript 的程序员，以及一直对 JavaScript 是否面向对象模棱两可，但希望知道真相的 JS 爱好者。</p>
+<h1 id="重新认识面向对象"><a href="#重新认识面向对象" class="headerlink" title="重新认识面向对象"></a>重新认识面向对象</h1><p>为了说明 JavaScript 是一门彻底的面向对象的语言，首先有必要从面向对象的概念着手 , 探讨一下面向对象中的几个概念：  </p>
+<ul>
+<li>一切事物皆对象</li>
+<li>对象具有封装和继承特性</li>
+<li>对象与对象之间使用消息通信，各自存在信息隐藏</li>
+</ul>
+<p>以这三点做为依据，C++ 是半面向对象半面向过程语言，因为，虽然他实现了类的封装、继承和多态，但存在非对象性质的全局函数和变量。Java、C# 是完全的面向对象语言，它们通过类的形式组织函数和变量，使之不能脱离对象存在。但这里函数本身是一个过程，只是依附在某个类上。  </p>
+<p>然而，面向对象仅仅是一个概念或者编程思想而已，它不应该依赖于某个语言存在。比如 Java 采用面向对象思想构造其语言，它实现了类、继承、派生、多态、接口等机制。但是这些机制，只是实现面向对象编程的一种手段，而非必须。换言之，一门语言可以根据其自身特性选择合适的方式来实现面向对象。所以，由于大多数程序员首先学习或者使用的是类似 Java、C++ 等高级编译型语言（Java 虽然是半编译半解释，但一般做为编译型来讲解），因而先入为主地接受了“类”这个面向对象实现方式，从而在学习脚本语言的时候，习惯性地用类式面向对象语言中的概念来判断该语言是否是面向对象语言，或者是否具备面向对象特性。这也是阻碍程序员深入学习并掌握 JavaScript 的重要原因之一。  </p>
+<p>实际上，JavaScript 语言是通过一种叫做 <strong>原型（prototype）</strong> 的方式来实现面向对象编程的。下面就来讨论 <strong>基于类的（class-based）面向对象</strong>和 <strong>基于原型的 (prototype-based) 面向对象</strong>这两种方式在构造客观世界的方式上的差别</p>
+<h1 id="基于类的面向对象和基于原型的面向对象方式比较"><a href="#基于类的面向对象和基于原型的面向对象方式比较" class="headerlink" title="基于类的面向对象和基于原型的面向对象方式比较"></a>基于类的面向对象和基于原型的面向对象方式比较</h1><p>在基于类的面向对象方式中，<strong>对象（object）</strong>依靠 <strong>类（class）</strong>来产生。而在基于原型的面向对象方式中，<strong>对象（object）</strong>则是依靠 <strong>构造器（constructor）</strong>利用 <strong>原型（prototype）</strong>构造出来的。举个客观世界的例子来说明二种方式认知的差异。例如工厂造一辆车，一方面，工人必须参照一张工程图纸，设计规定这辆车应该如何制造。这里的工程图纸就好比是语言中的 <strong>类 (class)</strong>，而车就是按照这个 <strong>类（class）</strong>制造出来的；另一方面，工人和机器 ( 相当于 constructor) 利用各种零部件如发动机，轮胎，方向盘 ( 相当于 prototype 的各个属性 ) 将汽车构造出来。  </p>
+<p>事实上关于这两种方式谁更为彻底地表达了面向对象的思想，目前尚有争论。但笔者认为原型式面向对象是一种更为彻底的面向对象方式，理由如下：  </p>
+<p>首先，客观世界中的对象的产生都是其它实物对象构造的结果，而抽象的“图纸”是不能产生“汽车”的，也就是说，类是一个抽象概念而并非实体，而对象的产生是一个实体的产生；  </p>
+<p>其次，按照一切事物皆对象这个最基本的面向对象的法则来看，类 (class) 本身并不是一个对象，然而原型方式中的构造器 (constructor) 和原型 (prototype) 本身也是其他对象通过原型方式构造出来的对象。  </p>
+<p>再次，在类式面向对象语言中，对象的状态 (state) 由对象实例 (instance) 所持有，对象的行为方法 (method) 则由声明该对象的类所持有，并且只有对象的结构和方法能够被继承；而在原型式面向对象语言中，对象的行为、状态都属于对象本身，并且能够一起被继承<a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>，这也更贴近客观实际。  </p>
+<p>最后，类式面向对象语言比如 Java，为了弥补无法使用面向过程语言中全局函数和变量的不便，允许在类中声明静态 (static) 属性和静态方法。而实际上，客观世界不存在所谓静态概念，因为一切事物皆对象！而在原型式面向对象语言中，除内建对象 (build-in object) 外，不允许全局对象、方法或者属性的存在，也没有静态概念。所有语言元素 (primitive) 必须依赖对象存在。但由于函数式语言的特点，语言元素所依赖的对象是随着运行时 (runtime) 上下文 (context) 变化而变化的，具体体现在 this 指针的变化。正是这种特点更贴近 “万物皆有所属，宇宙乃万物生存之根本”的自然观点。在 <em>程序清单 1</em> 中 window 便类似与宇宙的概念。  </p>
+<p><em>清单 1</em>. 对象的上下文依赖<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">  <span class="keyword">var</span> str = <span class="string">"我是一个 String 对象 , 我声明在这里 , 但我不是独立存在的！"</span>;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123; <span class="attr">des</span>: <span class="string">"我是一个 Object 对象 , 我声明在这里，我也不是独立存在的。"</span> &#125;;</span><br><span class="line">  <span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log( <span class="string">"我是一个Function 对象！谁调用我，我属于谁："</span>, <span class="keyword">this</span> ); &#125;;</span><br><span class="line">  obj.fun = fun; </span><br><span class="line">  <span class="built_in">console</span>.log( <span class="keyword">this</span> === <span class="built_in">window</span> ); <span class="comment">// 打印 true </span></span><br><span class="line">  <span class="built_in">console</span>.log( <span class="built_in">window</span>.str === str ); <span class="comment">// 打印 true </span></span><br><span class="line">  <span class="built_in">console</span>.log( <span class="built_in">window</span>.obj === obj ); <span class="comment">// 打印 true </span></span><br><span class="line">  <span class="built_in">console</span>.log( <span class="built_in">window</span>.fun === fun ); <span class="comment">// 打印 true </span></span><br><span class="line">  fun(); <span class="comment">// 打印 我是一个 Function对象！谁调用我，我属于谁：window </span></span><br><span class="line">  obj.fun(); <span class="comment">// 打印 我是一个 Function 对象！谁调用我，我属于谁：obj </span></span><br><span class="line">  fun.apply(str); <span class="comment">// 打印我是一个 Function 对象！谁调用我，我属于谁：str</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在接受了面向对象存在一种叫做基于原型实现的方式的事实之后，下面我们就可以来深入探讨 ECMAScript 是如何依据这一方式构造自己的语言的。</p>
+<h1 id="最基本的面向对象"><a href="#最基本的面向对象" class="headerlink" title="最基本的面向对象"></a>最基本的面向对象</h1><p>ECMAScript 是一门彻底的面向对象的编程语言<a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>，JavaScript 是其中的一个变种 (variant)。它提供了 6 种基本数据类型，即 Boolean、Number、String、Null、Undefined、Object。为了实现面向对象，ECMAScript设计出了一种非常成功的数据结构 - JSON(JavaScript Object Notation), 这一经典结构已经可以脱离语言而成为一种广泛应用的数据交互格式 <a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>。  </p>
+<p>应该说，具有基本数据类型和 JSON 构造语法的 ECMAScript 已经基本可以实现面向对象的编程了。开发者可以随意地用 <strong>字面式声明（literal notation）</strong>方式来构造一个对象，并对其不存在的属性直接赋值，或者用 delete 将属性删除 ( 注：JS 中的 delete 关键字用于删除对象属性，经常被误作为 C++ 中的 delete，而后者是用于释放不再使用的对象 )，如 <em>程序清单 2。</em><br><em>清单 2</em>. 字面式 (literal notation) 对象声明<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123; </span><br><span class="line">  name: “张三”, </span><br><span class="line">  age: <span class="number">26</span>, </span><br><span class="line">  gender: “男”, </span><br><span class="line">  eat: <span class="function"><span class="keyword">function</span>(<span class="params"> stuff </span>) </span>&#123; </span><br><span class="line">    alert( “我在吃” + stuff ); </span><br><span class="line">    &#125; </span><br><span class="line">  &#125;; </span><br><span class="line">  person.height = <span class="number">176</span>; </span><br><span class="line">  <span class="keyword">delete</span> person[ “age” ];</span><br></pre></td></tr></table></figure></p>
+<p>在实际开发过程中，大部分初学者或者对 JS 应用没有太高要求的开发者也基本上只用到 ECMAScript 定义的这一部分内容，就能满足基本的开发需求。然而，这样的代码复用性非常弱，与其他实现了继承、派生、多态等等的类式面向对象的强类型语言比较起来显得有些干瘪，不能满足复杂的 JS 应用开发。所以 ECMAScript 引入原型来解决对象继承问题。</p>
+<h1 id="使用函数构造器构造对象"><a href="#使用函数构造器构造对象" class="headerlink" title="使用函数构造器构造对象"></a>使用函数构造器构造对象</h1><p>除了 <strong>字面式声明（literal notation）</strong>方式之外，ECMAScript 允许通过 <strong>构造器（constructor）</strong>创建对象。每个构造器实际上是一个 <strong>函数（function） 对象</strong>, 该函数对象含有一个“prototype”属性用于实现 <strong>基于原型的继承（prototype-based inheritance）</strong>和 <strong>共享属性（shared properties）</strong>。对象可以由“new 关键字 + 构造器调用”的方式来创建，如 <em>程序清单 3</em>：</p>
+<p><em>清单 3</em>. 使用构造器 (constructor) 创建对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造器 Person 本身是一个函数对象 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 此处可做一些初始化工作 </span></span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">// 它有一个名叫 prototype 的属性 </span></span><br><span class="line">Person.prototype = &#123; </span><br><span class="line">  name: “张三”, </span><br><span class="line">  age: <span class="number">26</span>, </span><br><span class="line">  gender: “男”, </span><br><span class="line">  eat: <span class="function"><span class="keyword">function</span>(<span class="params"> stuff </span>) </span>&#123; alert( “我在吃” + stuff ); &#125; </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="comment">// 使用 new 关键字构造对象 </span></span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<p>由于早期 JavaScript 的发明者为了使这门语言与大名鼎鼎的 Java 拉上关系 ( 虽然现在大家知道二者是雷锋和雷锋塔的关系 )，使用了 <strong>new</strong>关键字来限定构造器调用并创建对象，以使其在语法上跟 Java 创建对象的方式看上去类似。但需要指出的是，这两门语言的 new含义毫无关系，因为其对象构造的机理完全不同。也正是因为这里语法上的类似，众多习惯了类式面向对象语言中对象创建方式的程序员，难以透彻理解 JS 对象原型构造的方式，因为他们总是不明白在 JS 语言中，为什么“函数名可以作为类名”的现象。而实质上，JS 这里仅仅是借用了关键字 <strong>new</strong>，仅此而已；换句话说，ECMAScript 完全可以用其它 <strong>非new</strong> 表达式来用调用构造器创建对象。</p>
+<h1 id="彻底理解原型链（prototype-chain）"><a href="#彻底理解原型链（prototype-chain）" class="headerlink" title="彻底理解原型链（prototype chain）"></a>彻底理解原型链（prototype chain）</h1><p>在 ECMAScript 中，每个由构造器创建的对象拥有一个指向构造器 prototype 属性值的 <strong>隐式引用（implicit reference</strong>，这个引用称之为 <strong>原型（prototype）</strong>。进一步，每个原型可以拥有指向自己原型的 <strong>隐式引用</strong>（即该原型的原型），如此下去，这就是所谓的 <strong>原型链（prototype chain）</strong> <a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>。在具体的语言实现中，每个对象都有一个 <strong>__proto__ 属性</strong>来实现对原型的 <strong>隐式引用</strong>。<em>程序清单 4</em>说明了这一点。</p>
+<p><em>清单 4</em>. 对象的 <strong>proto</strong> 属性和隐式引用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"> name </span>) </span>&#123; <span class="keyword">this</span>.name = name; &#125; </span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(); </span><br><span class="line"><span class="comment">// 对象的隐式引用指向了构造器的 prototype 属性，所以此处打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log( p.__proto__ === Person.prototype ); </span><br><span class="line"><span class="comment">// 原型本身是一个 Object 对象，所以他的隐式引用指向了 // Object 构造器的 prototype 属性 , 故而打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.__proto__ === <span class="built_in">Object</span>.prototype ); </span><br><span class="line"><span class="comment">// 构造器 Person 本身是一个函数对象，所以此处打印 true</span></span><br><span class="line"><span class="built_in">console</span>.log( Person.__proto__ === <span class="built_in">Function</span>.prototype );</span><br></pre></td></tr></table></figure></p>
+<p>有了 <strong>原型链</strong>，便可以定义一种所谓的 <strong>属性隐藏机制</strong>，并通过这种机制实现继承。ECMAScript 规定，当要给某个对象的属性赋值时，解释器会查找该对象原型链中第一个含有该属性的对象（注：原型本身就是一个对象，那么原型链即为一组对象的链。对象的原型链中的第一个对象是该对象本身）进行赋值。反之，如果要获取某个对象属性的值，解释器自然是返回该对象原型链中首先具有该属性的对象属性值。<em>图 1</em>说名了这中隐藏机制：</p>
+<p><em>图 1</em>. 原型链中的属性隐藏机制<br><img src="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/image001.png" alt=""><br><em>在图 1</em> 中，object1-&gt;prototype1-&gt;prototype2 构成了 对象 object1 的原型链，根据上述属性隐藏机制，可以清楚地看到 prototype1 对象中的 property4 属性和 prototype2 对象中的 property3 属性皆被隐藏。理解了原型链，那么将非常容易理解 JS 中基于原型的继承实现原理，<em>程序清单 5</em> 是利用原型链实现继承的简单例子。</p>
+<p><em>清单 5</em>. 利用原型链 Horse-&gt;Mammal-&gt;Animal 实现继承<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明 Animal 对象构造器 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123; &#125; <span class="comment">// 将 Animal 的 prototype 属性指向一个对象， // 亦可直接理解为指定 Animal 对象的原型 </span></span><br><span class="line">Animal.prototype = &#123; </span><br><span class="line">  name: animal<span class="string">",</span></span><br><span class="line"><span class="string">  weight: 0, </span></span><br><span class="line"><span class="string">  eat: function() &#123; alert( "</span>Animal is eating!<span class="string">" ); &#125; </span></span><br><span class="line"><span class="string">  &#125; </span></span><br><span class="line"><span class="string">  // 声明 Mammal 对象构造器 function</span></span><br><span class="line"><span class="string">  Mammal() &#123; this.name = "</span>mammal<span class="string">"; &#125; </span></span><br><span class="line"><span class="string">  // 指定 Mammal 对象的原型为一个 Animal 对象。 </span></span><br><span class="line"><span class="string">  // 实际上此处便是在创建 Mammal 对象和 Animal 对象之间的原型链 </span></span><br><span class="line"><span class="string">  Mammal.prototype = new Animal(); </span></span><br><span class="line"><span class="string">  // 声明 Horse 对象构造器 </span></span><br><span class="line"><span class="string">  function Horse( height,weight ) &#123; this.name = "</span>horse<span class="string">"; this.height = height; this.weight = weight; &#125; // 将 Horse 对象的原型指定为一个 Mamal 对象，继续构建 Horse 与 Mammal 之间的原型链 </span></span><br><span class="line"><span class="string">  Horse.prototype = new Mammal(); </span></span><br><span class="line"><span class="string">  // 重新指定 eat 方法 , 此方法将覆盖从 Animal 原型继承过来的 eat 方法 </span></span><br><span class="line"><span class="string">  Horse.prototype.eat = function() &#123; alert( "</span>Horse is eating grass!<span class="string">" ); &#125;</span></span><br><span class="line"><span class="string">   // 验证并理解原型链 </span></span><br><span class="line"><span class="string">   var horse = new Horse( 100, 300 ); </span></span><br><span class="line"><span class="string">   console.log( horse.__proto__ === Horse.prototype ); </span></span><br><span class="line"><span class="string">   console.log( Horse.prototype.__proto__ === Mammal.prototype ); </span></span><br><span class="line"><span class="string">   console.log( Mammal.prototype.__proto__ === Animal.prototype );</span></span><br></pre></td></tr></table></figure></p>
+<p>理解<em>清单 5</em> 中对象原型继承逻辑实现的关键在于 Horse.prototype = new Mammal() 和 Mammal.prototype = new Animal() 这两句代码。首先，等式右边的结果是构造出一个临时对象，然后将这个对象赋值给等式左边对象的 prototype 属性。也就是说将右边新建的对象作为左边对象的原型。读者可以将这两个等式替换到相应的程序清单 5 代码最后两行的等式中自行领悟。</p>
+<h1 id="Javascript类式继承的实现方法"><a href="#Javascript类式继承的实现方法" class="headerlink" title="Javascript类式继承的实现方法"></a>Javascript类式继承的实现方法</h1><p>从代码清单 5 可以看出，基于原型的继承方式，虽然实现了代码复用，但其行文松散且不够流畅，可阅读性差，不利于实现扩展和对源代码进行有效地组织管理。不得不承认，类式继承方式在语言实现上更具健壮性，且在构建可复用代码和组织架构程序方面具有明显的优势。这使得程序员们希望寻找到一种能够在 JavaScript 中以类式继承风格进行编码的方法途径。从抽象的角度来讲，既然类式继承和原型继承都是为实现面向对象而设计的，并且他们各自实现的载体语言在计算能力上是等价的 ( 因为图灵机的计算能力与 Lambda 演算的计算能力是等价的 )，那么能不能找到一种变换，使得原型式继承语言通过该变换实现具有类式继承编码的风格呢？</p>
+<p>目前一些主流的 JS 框架都提供了这种转换机制，也即类式声明方法，比如 Dojo.declare()、Ext.entend() 等等。用户使用这些框架，可以轻易而友好地组织自己的 JS 代码。其实，在众多框架出现之前，JavaScript 大师 Douglas Crockford 最早利用三个函数对 Function 对象进行扩展，实现了这种变换，关于它的实现细节可以<a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>。此外还有由 Dean Edwards实现的著名的 Base.js<a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>。值得一提的是，jQuery 之父 John Resig 在搏众家之长之后，用不到 30 行代码便实现了自己的 Simple Inheritance。使用其提供的 extend 方法声明类非常简单。<em>程序清单 6</em>是使用了 <strong>Simple Inheritance</strong>库实现类的声明的例子。其中最后一句打印输出语句是对 <strong>Simple Inheritance</strong>实现类式继承的最好说明。</p>
+<p>清单 6. 使用 Simple Inheritance 实现类式继承<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明 Person 类 </span></span><br><span class="line"><span class="keyword">var</span> Person = Class.extend( &#123; </span><br><span class="line">  _issleeping: <span class="literal">true</span>, </span><br><span class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"> name </span>) </span>&#123; <span class="keyword">this</span>._name = name; &#125;, </span><br><span class="line">  isSleeping: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>._issleeping; &#125; </span><br><span class="line">&#125; ); </span><br><span class="line"><span class="comment">// 声明 Programmer 类，并继承 Person </span></span><br><span class="line"><span class="keyword">var</span> Programmer = Person.extend( &#123;</span><br><span class="line">      init: <span class="function"><span class="keyword">function</span>(<span class="params"> name, issleeping </span>) </span>&#123; </span><br><span class="line">        <span class="comment">// 调用父类构造函数 </span></span><br><span class="line">        <span class="keyword">this</span>._super( name ); </span><br><span class="line">        <span class="comment">// 设置自己的状态</span></span><br><span class="line">       <span class="keyword">this</span>._issleeping = issleeping; </span><br><span class="line">      &#125; </span><br><span class="line">    &#125; ); </span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person( <span class="string">"张三"</span> ); </span><br><span class="line"><span class="keyword">var</span> diors = <span class="keyword">new</span> Programmer( <span class="string">"张江男"</span>, <span class="literal">false</span> ); </span><br><span class="line"><span class="comment">// 打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log( person.isSleeping() ); </span><br><span class="line"><span class="comment">// 打印 false</span></span><br><span class="line"><span class="built_in">console</span>.log( diors.isSleeping() ); </span><br><span class="line"><span class="comment">// 此处全为 true，故打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log( person <span class="keyword">instanceof</span> Person &amp;&amp; person <span class="keyword">instanceof</span> Class &amp;&amp; diors <span class="keyword">instanceof</span> Programmer &amp;&amp;diors <span class="keyword">instanceof</span> Person &amp;&amp; diors <span class="keyword">instanceof</span> Class );</span><br></pre></td></tr></table></figure></p>
+<p>如果您已对原型、函数构造器、闭包和基于上下文的 this 有了充分的理解，那么理解 Simple Inheritance 的实现原理也并非相当困难。从本质上讲，var Person = Class.extend(…)该语句中，左边的 Person 实际上是获得了由 Class 调用 extend 方法返回的一个构造器，也即一个 function 对象的引用。顺着这个思路，我们继续介绍 Simple Inheritance 是如何做到这一点，进而实现了由原型继承方式到类式继承方式的转换的。<em>图 2</em>是 Simple Inheritance 的源码及其附带注释。为了方便理解，用中文对代码逐行补充说明。</p>
+<p><em>图 2</em>.Simple Inheritance 源码解析<br><img src="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/image003.png" alt=""><br>抛开代码第二部分，整体连贯地考察第一和第三部分会发现，extend 函数的根本目的就是要构造一个具有新原型属性的新构造器。我们不禁感叹 John Resig的大师手笔及其对 JS 语言本质把握的细腻程度。至于 John Resig是如何想到这样精妙的实现方法，感兴趣的读者可以阅读本文 <a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>，其中有详细介绍关于最初设计 Simple Inheritance 的思维过程。</p>
+<h1 id="Javascript私有成员实现"><a href="#Javascript私有成员实现" class="headerlink" title="Javascript私有成员实现"></a>Javascript私有成员实现</h1><p>到此为止，如果您任然对 JavaScript 面向对象持怀疑态度，那么这个怀疑一定是，JavaScript 没有实现面向对象中的信息隐藏，即私有和公有。与其他类式面向对象那样显式地声明私有公有成员的方式不同，JavaScript 的信息隐藏就是靠闭包实现的。见 <em>程序清单 7</em>:</p>
+<p><em>清单 7</em>. 使用闭包实现信息隐藏<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明 User 构造器 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params"> pwd </span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 定义私有属性 </span></span><br><span class="line">  <span class="keyword">var</span> password = pwd;</span><br><span class="line">  <span class="comment">// 定义私有方法 </span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getPassword</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 返回了闭包中的 password </span></span><br><span class="line">    <span class="keyword">return</span> password; </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="comment">// 特权函数声明，用于该对象其他公有方法能通过该特权方法访问到私有成员 </span></span><br><span class="line">  <span class="keyword">this</span>.passwordService = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> getPassword();&#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 公有成员声明 </span></span><br><span class="line">User.prototype.checkPassword = <span class="function"><span class="keyword">function</span>(<span class="params"> pwd </span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.passwordService() === pwd; &#125;; </span><br><span class="line"><span class="comment">// 验证隐藏性 </span></span><br><span class="line"><span class="keyword">var</span> u = <span class="keyword">new</span> User( <span class="string">"123456"</span> ); </span><br><span class="line"><span class="comment">// 打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log( u.checkPassword( <span class="string">"123456"</span> ) ); </span><br><span class="line"><span class="comment">// 打印 undefined </span></span><br><span class="line"><span class="built_in">console</span>.log( u.password ); </span><br><span class="line"><span class="comment">// 打印 true </span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> u.getPassword === <span class="string">"undefined"</span> );</span><br></pre></td></tr></table></figure></p>
+<p>JavaScript 必须依赖闭包实现信息隐藏，是由其函数式语言特性所决定的。本文不会对函数式语言和闭包这两个话题展开讨论，正如上文默认您理解 JavaScript 中基于上下文的 this 一样。关于 JavaScript 中实现信息隐藏，Douglas Crockford在《 Private members in JavaScript 》<a href="https://www.ibm.com/developerworks/cn/web/1304_zengyz_jsoo/#artrelatedtopics" target="_blank" rel="external">（参考资源）</a>一文中有更权威和详细的介绍。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>JavaScript 被认为是世界上最受误解的编程语言，因为它身披 c 语言家族的外衣，表现的却是 LISP 风格的函数式语言特性；没有类，却实也彻底实现了面向对象。要对这门语言有透彻的理解，就必须扒开其 c 语言的外衣，从新回到函数式编程的角度，同时摒弃原有类的面向对象概念去学习领悟它。随着近些年来 Web 应用的普及和 JS 语言自身的长足发展，特别是后台 JS 引擎的出现 ( 如基于 V8 的 NodeJS 等 )，可以预见，原来只是作为玩具编写页面效果的 JS 将获得更广阔发展天地。这样的发展趋势，也对 JS 程序员提出了更高要求。只有彻底领悟了这门语言，才有可能在大型的 JS 项目中发挥她的威力。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/19/加油呦！自己！！/" rel="next" title="加油呦！自己！！">
+                <i class="fa fa-chevron-left"></i> 加油呦！自己！！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/git常用指令/" rel="prev" title="Git 常用命令">
+                Git 常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2247e52dc0cb0"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description">每一个矜持淡定的现在，都有一个很傻很天真的曾经。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ericcy/Ericcy.github.io" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                    
+                      <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/mqyqingfeng/Blog" title="js资料" target="_blank">js资料</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <embed src="//music.163.com/style/swf/widget.swf?sid=496870798&type=2&auto=1&width=320&height=66" width="300" height="86"  allowNetworking="all"></embed>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重新认识面向对象"><span class="nav-number">2.</span> <span class="nav-text">重新认识面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于类的面向对象和基于原型的面向对象方式比较"><span class="nav-number">3.</span> <span class="nav-text">基于类的面向对象和基于原型的面向对象方式比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最基本的面向对象"><span class="nav-number">4.</span> <span class="nav-text">最基本的面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用函数构造器构造对象"><span class="nav-number">5.</span> <span class="nav-text">使用函数构造器构造对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#彻底理解原型链（prototype-chain）"><span class="nav-number">6.</span> <span class="nav-text">彻底理解原型链（prototype chain）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript类式继承的实现方法"><span class="nav-number">7.</span> <span class="nav-text">Javascript类式继承的实现方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript私有成员实现"><span class="nav-number">8.</span> <span class="nav-text">Javascript私有成员实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">9.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由  强力驱动版权所有</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题一切解释权，洋哥说的算！</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2148609"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  
+    
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script type="text/javascript" src="/js/src/algolia.js?v=5.1.3"></script>
+
+  
+  
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>

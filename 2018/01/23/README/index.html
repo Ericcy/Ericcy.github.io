@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript, 前端工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ericcy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="blogEriccy的个人博客 订阅请点 watch, 收藏请点 star, 不要点 fork 想在微信上订阅？欢迎关注公众号”前端控” preact源码 preact 源码学习系列之二：组件的渲染与更新 preact 源码学习系列之一：JSX解析与DOM渲染 最小编辑距离问题：递归与动态规划  V8 V8引擎探索：如何注入全局变量  Vue Vue SSR Demo vue源码学习系列之十一：组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ericcy">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/README/index.html">
+<meta property="og:site_name" content="Ericcy">
+<meta property="og:description" content="blogEriccy的个人博客 订阅请点 watch, 收藏请点 star, 不要点 fork 想在微信上订阅？欢迎关注公众号”前端控” preact源码 preact 源码学习系列之二：组件的渲染与更新 preact 源码学习系列之一：JSX解析与DOM渲染 最小编辑距离问题：递归与动态规划  V8 V8引擎探索：如何注入全局变量  Vue Vue SSR Demo vue源码学习系列之十一：组">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/01/23/README/image/wechat-ali-pay.png">
+<meta property="og:updated_time" content="2018-01-23T15:58:35.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ericcy">
+<meta name="twitter:description" content="blogEriccy的个人博客 订阅请点 watch, 收藏请点 star, 不要点 fork 想在微信上订阅？欢迎关注公众号”前端控” preact源码 preact 源码学习系列之二：组件的渲染与更新 preact 源码学习系列之一：JSX解析与DOM渲染 最小编辑距离问题：递归与动态规划  V8 V8引擎探索：如何注入全局变量  Vue Vue SSR Demo vue源码学习系列之十一：组">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/23/README/image/wechat-ali-pay.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    root: '/',
+    algolia: {
+      applicationID: 'E2MRL45953',
+      apiKey: 'fc124c8356606d7fa6c781253f763388',
+      indexName: 'index_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/README/"/>
+
+
+
+
+
+  <title> | Ericcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ericcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">jsyang</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <!-- -->
+  <!-- 改为 -->
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+                <a href="javascript:;" class="popup-trigger">
+              
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+      <div class="algolia-popup popup">
+  <div class="algolia-search">
+    <div class="algolia-search-input-icon">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="algolia-search-input" id="algolia-search-input"></div>
+  </div>
+  <div class="algolia-results">
+    <div id="algolia-stats"></div>
+    <div id="algolia-hits"></div>
+    <div id="algolia-pagination" class="algolia-pagination"></div>
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+  
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/README/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ericcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T15:06:01+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="blog"><a href="#blog" class="headerlink" title="blog"></a>blog</h1><p>Ericcy的个人博客</p>
+<p>订阅请点 watch, 收藏请点 star, 不要点 fork</p>
+<p>想在微信上订阅？欢迎关注公众号”前端控”</p>
+<h2 id="preact源码"><a href="#preact源码" class="headerlink" title="preact源码"></a><a href="https://github.com/youngwind/blog/labels/preact%20%E6%BA%90%E7%A0%81" target="_blank" rel="external">preact源码</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/104" target="_blank" rel="external">preact 源码学习系列之二：组件的渲染与更新</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/103" target="_blank" rel="external">preact 源码学习系列之一：JSX解析与DOM渲染</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/106" target="_blank" rel="external">最小编辑距离问题：递归与动态规划</a></li>
+</ol>
+<h2 id="V8"><a href="#V8" class="headerlink" title="V8"></a><a href="https://github.com/youngwind/blog/labels/V8" target="_blank" rel="external">V8</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/102" target="_blank" rel="external">V8引擎探索：如何注入全局变量</a></li>
+</ol>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a><a href="https://github.com/youngwind/blog/labels/Vue" target="_blank" rel="external">Vue</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/112" target="_blank" rel="external">Vue SSR Demo</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/94" target="_blank" rel="external">vue源码学习系列之十一：组件化原理探索(父子组件通信)</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/93" target="_blank" rel="external">vue源码学习系列之十：组件化原理探索(动态props)</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/92" target="_blank" rel="external">vue源码学习系列之九：组件化原理探索(静态props)</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/91" target="_blank" rel="external">vue早期源码学习系列之八：如何实现”v-repeat”列表渲染</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/90" target="_blank" rel="external">vue早期源码学习系列之七：如何实现”v-if”条件渲染</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/89" target="_blank" rel="external">vue早期源码学习系列之六：如何实现计算属性</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/88" target="_blank" rel="external">vue早期源码学习系列之五：批处理更新DOM</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/87" target="_blank" rel="external">vue早期源码学习系列之四：如何实现动态数据绑定</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/86" target="_blank" rel="external">vue早期源码学习系列之三：如何写一个watch库</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/85" target="_blank" rel="external">vue早期源码学习系列之二：如何监听一个数组的变化</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/84" target="_blank" rel="external">vue早期源码学习系列之一：如何监听一个对象的变化</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/83" target="_blank" rel="external">如何编写一个vue自定义指令</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/82" target="_blank" rel="external">如何开发一个移动web UI组件库：适配篇</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/81" target="_blank" rel="external">如何开发一个移动web UI组件库：vue插件篇</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/80" target="_blank" rel="external">如何开发一个移动web UI组件库：构架篇</a></li>
+</ol>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a><a href="https://github.com/youngwind/blog/labels/webpack" target="_blank" rel="external">webpack</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/101" target="_blank" rel="external">webpack源码学习系列之三：loader 机制</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/100" target="_blank" rel="external">webpack源码学习系列之二：code-splitting（代码切割）</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/99" target="_blank" rel="external">webpack源码学习系列之一：如何实现一个简单的webpack</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/65" target="_blank" rel="external">webpack打包bundle.js体积大小优化</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/64" target="_blank" rel="external">webpack打包bundle.js依赖分析</a></li>
+</ol>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a><a href="https://github.com/youngwind/blog/labels/JS" target="_blank" rel="external">JS</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/98" target="_blank" rel="external">如何实现一个异步模块加载器–以requireJS为例</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/97" target="_blank" rel="external">Mixin、多重继承与装饰者模式</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/96" target="_blank" rel="external">你不知道的回调、异步与生成器</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/95" target="_blank" rel="external">数组遍历、for…of、Interator接口与迭代器模式</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/68" target="_blank" rel="external">babel初学者的一些常见误区</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/62" target="_blank" rel="external">异步回调更优雅的解决方式：async</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/49" target="_blank" rel="external">ES6 generator 、yield 与co</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/2" target="_blank" rel="external">babel配置文件的使用</a></li>
+</ol>
+<h2 id="移动H5"><a href="#移动H5" class="headerlink" title="移动H5"></a><a href="https://github.com/youngwind/blog/labels/%E7%A7%BB%E5%8A%A8H5" target="_blank" rel="external">移动H5</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/79" target="_blank" rel="external">Hybrid App中web资源的离线存储与更新机制研究</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/78" target="_blank" rel="external">我为什么要研究Hybrid App </a></li>
+<li><a href="https://github.com/youngwind/blog/issues/77" target="_blank" rel="external">利用hammer.js解决300ms延时</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/76" target="_blank" rel="external">JSBridge实现原理探索：以toast为例</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/75" target="_blank" rel="external">真机远程调试：chrome://inspect</a></li>
+</ol>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a><a href="https://github.com/youngwind/blog/labels/React" target="_blank" rel="external">React</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/109" target="_blank" rel="external">单页面应用路由实现原理：以 React-Router 为例</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/107" target="_blank" rel="external">React 事件代理与 stopImmediatePropagation</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/67" target="_blank" rel="external">如何在redux中捕获处理ajax请求错误</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/66" target="_blank" rel="external">使用react-transition-group引发的this.setState异步问题</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/61" target="_blank" rel="external">react-css-transition实战</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/58" target="_blank" rel="external">redux使用的反思：状态存储 </a></li>
+<li><a href="https://github.com/youngwind/blog/issues/57" target="_blank" rel="external">交互动画系列之三：react动画 </a></li>
+<li><a href="https://github.com/youngwind/blog/issues/56" target="_blank" rel="external">交互动画系列之二：赛贝尔曲线 </a></li>
+<li><a href="https://github.com/youngwind/blog/issues/55" target="_blank" rel="external">交互动画系列之一：解决bundle.js首次加载动画问题</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/25" target="_blank" rel="external">redux组织代码之：分割action</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/23" target="_blank" rel="external">react滚动加载之————react-lazy-load</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/22" target="_blank" rel="external">react组件动态处理className</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/18" target="_blank" rel="external">组件编写规范之：proptypes</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/17" target="_blank" rel="external">react-router 与 history的版本匹配问题</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/16" target="_blank" rel="external">react-native：寻找像写scss那样写react native 样式的方法</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/15" target="_blank" rel="external">初探react-native踩到的一些坑以及解决方案</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/14" target="_blank" rel="external">在react中使用箭头函数引发的对this的思考</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/11" target="_blank" rel="external">redux精简代码之–actionType与redux-action-utils</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/10" target="_blank" rel="external">redux精简代码之–抽象select函数和mapDispatchToProps函数</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/9" target="_blank" rel="external">react 禁止“事件冒泡” </a></li>
+</ol>
+<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a><a href="https://github.com/youngwind/blog/labels/Nodejs" target="_blank" rel="external">Nodejs</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/71" target="_blank" rel="external">Mongodb与Mongoose的学习体会</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/70" target="_blank" rel="external">自己动手写一个GithubStarManager</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/52" target="_blank" rel="external">自己动手写todolist的后端</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/51" target="_blank" rel="external">nodejs redis实战–如何写登录模块</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/45" target="_blank" rel="external">自己动手写express中间件</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/44" target="_blank" rel="external">nodejs使用sequelize操作数据库</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/43" target="_blank" rel="external">nodejs使用mysql包操作数据库</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/53" target="_blank" rel="external">try…catch、express与co错误捕获</a></li>
+</ol>
+<h2 id="JQuery"><a href="#JQuery" class="headerlink" title="JQuery"></a><a href="https://github.com/youngwind/blog/labels/JQuery" target="_blank" rel="external">JQuery</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/74" target="_blank" rel="external">thief系列之四：从实现getJSON中探索XHR和promise</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/69" target="_blank" rel="external">thief系列之三：从实现链式调用中看类数组对象与级联</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/63" target="_blank" rel="external">thief系列之二：从获取DOM和增删类中看js如何构造一个类</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/60" target="_blank" rel="external">thief系列之一：总序&amp;&amp;从第一行代码开始</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/35" target="_blank" rel="external">jquery.cursor.js:自己编写的光标控制插件</a></li>
+</ol>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a><a href="https://github.com/youngwind/blog/labels/%E5%B7%A5%E7%A8%8B%E5%8C%96" target="_blank" rel="external">工程化</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/48" target="_blank" rel="external">shell.js与yargs命令行开发</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/47" target="_blank" rel="external">与脚手架大战：回合2</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/46" target="_blank" rel="external">与脚手架大战：回合1</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/54" target="_blank" rel="external">rap与mock：接口定义与生成平台</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/41" target="_blank" rel="external">终端交互——inquire.js</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/26" target="_blank" rel="external">从gulpfile.js的warning联想到软件的腐败</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/21" target="_blank" rel="external">scss-lint实战碰到的一些问题以及解决方案</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/19" target="_blank" rel="external">代码质量之：scss-lint</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/13" target="_blank" rel="external">代码质量之：eslint</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/8" target="_blank" rel="external">config.js文件引入env字段区分测试和开发环境</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/7" target="_blank" rel="external">gulp-preprocess 让你的项目只需要一个配置文件</a></li>
+</ol>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a><a href="https://github.com/youngwind/blog/labels/%E5%85%BC%E5%AE%B9%E6%80%A7" target="_blank" rel="external">兼容性</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/50" target="_blank" rel="external">ie兼容性问题记录</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/42" target="_blank" rel="external">Selectivizr：让IE6~IE8支持CSS3高级选择器</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/37" target="_blank" rel="external">IE8 max-width失效引起的对meta标签的思考</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/36" target="_blank" rel="external">IE8和IE9跨域请求数据兼容性解决方案</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/34" target="_blank" rel="external">es5-shim和es5-sham</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/31" target="_blank" rel="external">浏览器特性检测工具：Modernizr </a></li>
+<li><a href="https://github.com/youngwind/blog/issues/29" target="_blank" rel="external">ie8 chartjs兼容性解决方案</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/28" target="_blank" rel="external">ie8 placeholder兼容性解决方案</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/27" target="_blank" rel="external">ie8 上传文件后提示下载文件</a></li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a href="https://github.com/youngwind/blog/labels/%E5%85%B6%E4%BB%96" target="_blank" rel="external">其他</a></h2><ol>
+<li><a href="https://github.com/youngwind/blog/issues/108" target="_blank" rel="external">图解 HTTPS：Charles 捕获 HTTPS 的原理</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/73" target="_blank" rel="external">浏览器history api的研究</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/72" target="_blank" rel="external">浅谈http报文与请求体格式</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/59" target="_blank" rel="external">将数组转化成自定义hash键的对象</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/40" target="_blank" rel="external">变量检查校验相关：is.js、validator 、JSVerbalExpressions</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/39" target="_blank" rel="external">How to remove “sudo” when npm install -g</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/38" target="_blank" rel="external">一些小技巧的总结</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/33" target="_blank" rel="external">Error: Does Not Satisfy Its Siblings’ peerDependencies Requirements</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/32" target="_blank" rel="external">函数自定义属性</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/30" target="_blank" rel="external">利用缓存缩短npm install的时间</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/24" target="_blank" rel="external">css样式融合与类继承</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/20" target="_blank" rel="external">全局css的终结——css module</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/12" target="_blank" rel="external">单元测试之：mocha和chai</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/6" target="_blank" rel="external">利用代码片段偷懒：dash snippets</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/5" target="_blank" rel="external">git技巧之 –set-upstream</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/4" target="_blank" rel="external">code review</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/3" target="_blank" rel="external">记一次如何找到Object.assign()编译方法的历程</a></li>
+<li><a href="https://github.com/youngwind/blog/issues/1" target="_blank" rel="external">初探lodash</a></li>
+</ol>
+<h1 id="捐助"><a href="#捐助" class="headerlink" title="捐助"></a>捐助</h1><p>为什么要捐助？一篇好文章可以帮助你节省大量的时间，而你的时间是相当宝贵的。<br>向文章的作者提供小额捐助，可以鼓励作者写出更好的文章。这是一种良性循环，现在就行动吧！<br>鼓励留言，让我认识你。</p>
+<p><img src="./image/wechat-ali-pay.png" alt="打赏"></p>
+<h1 id="订阅方式"><a href="#订阅方式" class="headerlink" title="订阅方式"></a>订阅方式</h1><p>我们都知道，GitHub Blog 的订阅方式用起来实在是不尽人意，star 的话接收不到新 issue 通知，watch 的话有关无关通通都会接到通知，不想看的还得一个一个 unsubscribe，挺麻烦的。怎么办呢？下面是一些可供参考现成解决方案。</p>
+<ol>
+<li><a href="https://github.com/yutingzhao1991/github-blogs-weekly/issues/18" target="_blank" rel="external">github-blogs 优化意见收集</a>, By yutingzhao1991</li>
+<li><a href="https://imsun.net/posts/gh-feed/" target="_blank" rel="external">如何使用 Feed 订阅 GitHub Issues</a>, By 孙士权</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/19/加油呦！自己！！/" rel="next" title="加油呦！自己！！">
+                <i class="fa fa-chevron-left"></i> 加油呦！自己！！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/08/全面理解面向对象的JavaScript/" rel="prev" title="全面理解面向对象的JavaScript">
+                全面理解面向对象的JavaScript <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2247e52dc0cb0"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description">每一个矜持淡定的现在，都有一个很傻很天真的曾经。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ericcy/Ericcy.github.io" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                    
+                      <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/mqyqingfeng/Blog" title="js资料" target="_blank">js资料</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <embed src="//music.163.com/style/swf/widget.swf?sid=496870798&type=2&auto=1&width=320&height=66" width="300" height="86"  allowNetworking="all"></embed>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#blog"><span class="nav-number">1.</span> <span class="nav-text">blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#preact源码"><span class="nav-number">1.1.</span> <span class="nav-text">preact源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V8"><span class="nav-number">1.2.</span> <span class="nav-text">V8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">1.3.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack"><span class="nav-number">1.4.</span> <span class="nav-text">webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">1.5.</span> <span class="nav-text">JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动H5"><span class="nav-number">1.6.</span> <span class="nav-text">移动H5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">1.7.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nodejs"><span class="nav-number">1.8.</span> <span class="nav-text">Nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JQuery"><span class="nav-number">1.9.</span> <span class="nav-text">JQuery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程化"><span class="nav-number">1.10.</span> <span class="nav-text">工程化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容性"><span class="nav-number">1.11.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.12.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#捐助"><span class="nav-number">2.</span> <span class="nav-text">捐助</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#订阅方式"><span class="nav-number">3.</span> <span class="nav-text">订阅方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由  强力驱动版权所有</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题一切解释权，洋哥说的算！</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2148609"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  
+    
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script type="text/javascript" src="/js/src/algolia.js?v=5.1.3"></script>
+
+  
+  
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>

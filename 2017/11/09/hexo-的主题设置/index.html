@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="hexo themes," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ericcy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="hexo 的主题设置步骤参考连接 话不多说直接走起！ 首先是要执行1hexo init &apos;yourblogname&apos; 生成一个博客的框架。然后在1cd yourblogname 在这之前你要先找好，你喜欢的主题，你可以在这里找Hexo 主题推荐也可以去官网看看。 把你喜欢的主题克隆到本地1git clone 主题的地址（github上的地址） themes/主题的名字 修改博客根目录下的 ‘_co">
+<meta name="keywords" content="hexo themes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 的主题设置">
+<meta property="og:url" content="http://yoursite.com/2017/11/09/hexo-的主题设置/index.html">
+<meta property="og:site_name" content="Ericcy">
+<meta property="og:description" content="hexo 的主题设置步骤参考连接 话不多说直接走起！ 首先是要执行1hexo init &apos;yourblogname&apos; 生成一个博客的框架。然后在1cd yourblogname 在这之前你要先找好，你喜欢的主题，你可以在这里找Hexo 主题推荐也可以去官网看看。 把你喜欢的主题克隆到本地1git clone 主题的地址（github上的地址） themes/主题的名字 修改博客根目录下的 ‘_co">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=3416765297,4165181760&os=1630125977,1750985640&simid=0,0&pn=3&rn=1&di=32988872950&ln=1932&fr=&fmq=1389861203899_R&fm=&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&oriquery=%E6%96%97%E5%9B%BE&objurl=http%3A%2F%2Fwww.xmwinnerkey.com%2Fthumbimg%2Fbd13661703.jpg&rpstart=0&rpnum=0&adpicid=0">
+<meta property="og:image" content="https://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=223541022,400851155&os=2427535232,3124470864&simid=0,0&pn=0&rn=1&di=41873546930&ln=1932&fr=&fmq=1389861203899_R&fm=&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=1051109702,1457208597&istype=2&ist=&jit=&bdtype=17&spn=0&pi=0&gsm=0&hs=2&oriquery=%E6%96%97%E5%9B%BE&objurl=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd50735fae6cd7b89d6509c42062442a7d9330e36.jpg&rpstart=0&rpnum=0&adpicid=0">
+<meta property="og:image" content="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%B6%85%E7%BA%A7%E5%8F%AF%E7%88%B1%E5%B0%8F%E8%A1%A8%E6%83%85%E6%96%97%E5%9B%BE&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=1665107456,3268467505&os=3639794897,2532043323&simid=3391960873,338591389&pn=35&rn=1&di=79474253431&ln=1986&fr=&fmq=1510195663143_R&fm=rs11&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&oriquery=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&objurl=http%3A%2F%2F04.imgmini.eastday.com%2Fmobile%2F20170326%2F20170326202256_951e36b9869ced40dd9b6917114e6db3_5.jpeg&rpstart=0&rpnum=0&adpicid=0">
+<meta property="og:updated_time" content="2017-11-09T03:00:01.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo 的主题设置">
+<meta name="twitter:description" content="hexo 的主题设置步骤参考连接 话不多说直接走起！ 首先是要执行1hexo init &apos;yourblogname&apos; 生成一个博客的框架。然后在1cd yourblogname 在这之前你要先找好，你喜欢的主题，你可以在这里找Hexo 主题推荐也可以去官网看看。 把你喜欢的主题克隆到本地1git clone 主题的地址（github上的地址） themes/主题的名字 修改博客根目录下的 ‘_co">
+<meta name="twitter:image" content="https://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=3416765297,4165181760&os=1630125977,1750985640&simid=0,0&pn=3&rn=1&di=32988872950&ln=1932&fr=&fmq=1389861203899_R&fm=&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&oriquery=%E6%96%97%E5%9B%BE&objurl=http%3A%2F%2Fwww.xmwinnerkey.com%2Fthumbimg%2Fbd13661703.jpg&rpstart=0&rpnum=0&adpicid=0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    root: '/',
+    algolia: {
+      applicationID: 'E2MRL45953',
+      apiKey: 'fc124c8356606d7fa6c781253f763388',
+      indexName: 'index_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/09/hexo-的主题设置/"/>
+
+
+
+
+
+  <title>hexo 的主题设置 | Ericcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ericcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">jsyang</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <!-- -->
+  <!-- 改为 -->
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+                <a href="javascript:;" class="popup-trigger">
+              
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+      <div class="algolia-popup popup">
+  <div class="algolia-search">
+    <div class="algolia-search-input-icon">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="algolia-search-input" id="algolia-search-input"></div>
+  </div>
+  <div class="algolia-results">
+    <div id="algolia-stats"></div>
+    <div id="algolia-hits"></div>
+    <div id="algolia-pagination" class="algolia-pagination"></div>
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+  
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/09/hexo-的主题设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ericcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo 的主题设置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:03:49+08:00">
+                2017-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="hexo-的主题设置步骤"><a href="#hexo-的主题设置步骤" class="headerlink" title="hexo 的主题设置步骤"></a>hexo 的主题设置步骤</h1><p><a href="http://www.jianshu.com/p/f054333ac9e6" target="_blank" rel="external">参考连接</a></p>
+<p>话不多说直接走起！<br><img src="https://image.baidu.com/search/detail?ct=503316480&amp;z=&amp;tn=baiduimagedetail&amp;ipn=d&amp;word=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&amp;step_word=&amp;ie=utf-8&amp;in=&amp;cl=2&amp;lm=-1&amp;st=-1&amp;cs=3416765297,4165181760&amp;os=1630125977,1750985640&amp;simid=0,0&amp;pn=3&amp;rn=1&amp;di=32988872950&amp;ln=1932&amp;fr=&amp;fmq=1389861203899_R&amp;fm=&amp;ic=0&amp;s=undefined&amp;se=&amp;sme=&amp;tab=0&amp;width=&amp;height=&amp;face=undefined&amp;is=0,0&amp;istype=2&amp;ist=&amp;jit=&amp;bdtype=0&amp;spn=0&amp;pi=0&amp;gsm=0&amp;hs=2&amp;oriquery=%E6%96%97%E5%9B%BE&amp;objurl=http%3A%2F%2Fwww.xmwinnerkey.com%2Fthumbimg%2Fbd13661703.jpg&amp;rpstart=0&amp;rpnum=0&amp;adpicid=0" alt="==&gt;"></p>
+<h2 id="首先是要执行"><a href="#首先是要执行" class="headerlink" title="首先是要执行"></a>首先是要执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="string">'yourblogname'</span></span><br></pre></td></tr></table></figure>
+<p>生成一个博客的框架。然后在<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd yourblogname</span><br></pre></td></tr></table></figure></p>
+<p>在这之前你要先找好，你喜欢的主题，你可以在这里找<br><a href="http://www.jianshu.com/p/b6c694c2e58e" target="_blank" rel="external">Hexo 主题推荐</a><br>也可以去官网看看。</p>
+<h2 id="把你喜欢的主题克隆到本地"><a href="#把你喜欢的主题克隆到本地" class="headerlink" title="把你喜欢的主题克隆到本地"></a>把你喜欢的主题克隆到本地</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 主题的地址（github上的地址） themes/主题的名字</span><br></pre></td></tr></table></figure>
+<h2 id="修改博客根目录下的-‘-config-yml’-文件"><a href="#修改博客根目录下的-‘-config-yml’-文件" class="headerlink" title="修改博客根目录下的 ‘_config.yml’ 文件"></a>修改博客根目录下的 ‘_config.yml’ 文件</h2><blockquote>
+<p>如果你会 vim 的话可以直接用 vim 编辑器来操作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: 主题名字</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>你还可以在这里修改你的博客名字、作者之类的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line"># avatar:  </span><br><span class="line">title: 博客名字</span><br><span class="line">subtitle: jsyang</span><br><span class="line">description: 个人出品</span><br><span class="line">author: ericcy</span><br><span class="line">language: chinese</span><br><span class="line">timezone:</span><br></pre></td></tr></table></figure></p>
+<h2 id="然后执行下面的命令。"><a href="#然后执行下面的命令。" class="headerlink" title="然后执行下面的命令。"></a>然后执行下面的命令。</h2><blockquote>
+<p>在此之前你也可以执行：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --debug</span><br></pre></td></tr></table></figure></p>
+<p>来预览是否修改成功或者有没有报错。</p>
+</blockquote>
+<p>如果成功了，就可以依次执行：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://blog.csdn.net/qq_26975307/article/details/62447489" target="_blank" rel="external">hexo指令介绍：</a></p>
+</blockquote>
+<h2 id="到此你的主题已经更换完成。"><a href="#到此你的主题已经更换完成。" class="headerlink" title="到此你的主题已经更换完成。"></a>到此你的主题已经更换完成。</h2><p><img src="https://image.baidu.com/search/detail?ct=503316480&amp;z=&amp;tn=baiduimagedetail&amp;ipn=d&amp;word=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&amp;step_word=&amp;ie=utf-8&amp;in=&amp;cl=2&amp;lm=-1&amp;st=-1&amp;cs=223541022,400851155&amp;os=2427535232,3124470864&amp;simid=0,0&amp;pn=0&amp;rn=1&amp;di=41873546930&amp;ln=1932&amp;fr=&amp;fmq=1389861203899_R&amp;fm=&amp;ic=0&amp;s=undefined&amp;se=&amp;sme=&amp;tab=0&amp;width=&amp;height=&amp;face=undefined&amp;is=1051109702,1457208597&amp;istype=2&amp;ist=&amp;jit=&amp;bdtype=17&amp;spn=0&amp;pi=0&amp;gsm=0&amp;hs=2&amp;oriquery=%E6%96%97%E5%9B%BE&amp;objurl=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd50735fae6cd7b89d6509c42062442a7d9330e36.jpg&amp;rpstart=0&amp;rpnum=0&amp;adpicid=0" alt="是不是很嗨皮！！！"></p>
+<h2 id="你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢"><a href="#你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢" class="headerlink" title="你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢 ~~~"></a>你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢 ~~~</h2><h3 id="以下是-next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！"><a href="#以下是-next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！" class="headerlink" title="以下是 next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！"></a>以下是 next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！</h3><p><a href="http://www.jianshu.com/p/f054333ac9e6" target="_blank" rel="external">next主题个性化</a></p>
+<p><img src="https://image.baidu.com/search/detail?ct=503316480&amp;z=undefined&amp;tn=baiduimagedetail&amp;ipn=d&amp;word=%E8%B6%85%E7%BA%A7%E5%8F%AF%E7%88%B1%E5%B0%8F%E8%A1%A8%E6%83%85%E6%96%97%E5%9B%BE&amp;step_word=&amp;ie=utf-8&amp;in=&amp;cl=2&amp;lm=-1&amp;st=-1&amp;cs=1665107456,3268467505&amp;os=3639794897,2532043323&amp;simid=3391960873,338591389&amp;pn=35&amp;rn=1&amp;di=79474253431&amp;ln=1986&amp;fr=&amp;fmq=1510195663143_R&amp;fm=rs11&amp;ic=undefined&amp;s=undefined&amp;se=&amp;sme=&amp;tab=0&amp;width=undefined&amp;height=undefined&amp;face=undefined&amp;is=0,0&amp;istype=0&amp;ist=&amp;jit=&amp;bdtype=0&amp;spn=0&amp;pi=0&amp;gsm=0&amp;hs=2&amp;oriquery=%E6%96%97%E5%9B%BE%20%E5%8F%AF%E7%88%B1%E5%B0%8F&amp;objurl=http%3A%2F%2F04.imgmini.eastday.com%2Fmobile%2F20170326%2F20170326202256_951e36b9869ced40dd9b6917114e6db3_5.jpeg&amp;rpstart=0&amp;rpnum=0&amp;adpicid=0" alt="哈哈哈！！！"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo-themes/" rel="tag"><i class="fa fa-tag"></i> hexo themes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/17/github/" rel="next" title="github 学习">
+                <i class="fa fa-chevron-left"></i> github 学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/09/Vim常快捷/" rel="prev" title="Vim常快捷">
+                Vim常快捷 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2247e52dc0cb0"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description">每一个矜持淡定的现在，都有一个很傻很天真的曾经。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ericcy/Ericcy.github.io" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                    
+                      <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/mqyqingfeng/Blog" title="js资料" target="_blank">js资料</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <embed src="//music.163.com/style/swf/widget.swf?sid=496870798&type=2&auto=1&width=320&height=66" width="300" height="86"  allowNetworking="all"></embed>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-的主题设置步骤"><span class="nav-number">1.</span> <span class="nav-text">hexo 的主题设置步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先是要执行"><span class="nav-number">1.1.</span> <span class="nav-text">首先是要执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把你喜欢的主题克隆到本地"><span class="nav-number">1.2.</span> <span class="nav-text">把你喜欢的主题克隆到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改博客根目录下的-‘-config-yml’-文件"><span class="nav-number">1.3.</span> <span class="nav-text">修改博客根目录下的 ‘_config.yml’ 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后执行下面的命令。"><span class="nav-number">1.4.</span> <span class="nav-text">然后执行下面的命令。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#到此你的主题已经更换完成。"><span class="nav-number">1.5.</span> <span class="nav-text">到此你的主题已经更换完成。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢"><span class="nav-number">1.6.</span> <span class="nav-text">你以为结束了是吗？其实本篇博客就是结束了，可谁让小编心好，还想给你多分享点好东西呢 ~~~</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以下是-next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！"><span class="nav-number">1.6.1.</span> <span class="nav-text">以下是 next主题的各种美化，小伙伴们赶紧行动吧，让你的博客亮瞎他人的双眼吧！！！</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由  强力驱动版权所有</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题一切解释权，洋哥说的算！</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2148609"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  
+    
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script type="text/javascript" src="/js/src/algolia.js?v=5.1.3"></script>
+
+  
+  
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>
