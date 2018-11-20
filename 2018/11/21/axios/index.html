@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue请求 axios," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ericcy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="axios API 介绍{// url是将用于请求的服务器URLurl: ‘/user’, // method是发出请求时使用的请求方法method: ‘get’, // 默认 // baseURL将被添加到url前面，除非url是绝对的。// 可以方便地为 axios 的实例设置baseURL，以便将相对 URL 传递给该实例的方法。baseURL: ‘https://some-domain.c">
+<meta name="keywords" content="vue请求 axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/axios/index.html">
+<meta property="og:site_name" content="Ericcy">
+<meta property="og:description" content="axios API 介绍{// url是将用于请求的服务器URLurl: ‘/user’, // method是发出请求时使用的请求方法method: ‘get’, // 默认 // baseURL将被添加到url前面，除非url是绝对的。// 可以方便地为 axios 的实例设置baseURL，以便将相对 URL 传递给该实例的方法。baseURL: ‘https://some-domain.c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-20T23:32:20.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="axios">
+<meta name="twitter:description" content="axios API 介绍{// url是将用于请求的服务器URLurl: ‘/user’, // method是发出请求时使用的请求方法method: ‘get’, // 默认 // baseURL将被添加到url前面，除非url是绝对的。// 可以方便地为 axios 的实例设置baseURL，以便将相对 URL 传递给该实例的方法。baseURL: ‘https://some-domain.c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    root: '/',
+    algolia: {
+      applicationID: 'E2MRL45953',
+      apiKey: 'fc124c8356606d7fa6c781253f763388',
+      indexName: 'index_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/21/axios/"/>
+
+
+
+
+
+  <title>axios | Ericcy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ericcy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">jsyang</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <!-- -->
+  <!-- 改为 -->
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+                <a href="javascript:;" class="popup-trigger">
+              
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+      <div class="algolia-popup popup">
+  <div class="algolia-search">
+    <div class="algolia-search-input-icon">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="algolia-search-input" id="algolia-search-input"></div>
+  </div>
+  <div class="algolia-results">
+    <div id="algolia-stats"></div>
+    <div id="algolia-hits"></div>
+    <div id="algolia-pagination" class="algolia-pagination"></div>
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+  
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/axios/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="洋仔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ericcy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">axios</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T07:31:26+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="axios-API-介绍"><a href="#axios-API-介绍" class="headerlink" title="axios API 介绍"></a>axios API 介绍</h2><p>{<br>// <code>url</code>是将用于请求的服务器URL<br>url: ‘/user’,</p>
+<p>// <code>method</code>是发出请求时使用的请求方法<br>method: ‘get’, // 默认</p>
+<p>// <code>baseURL</code>将被添加到<code>url</code>前面，除非<code>url</code>是绝对的。<br>// 可以方便地为 axios 的实例设置<code>baseURL</code>，以便将相对 URL 传递给该实例的方法。<br>baseURL: ‘<a href="https://some-domain.com/api/" target="_blank" rel="external">https://some-domain.com/api/</a>‘,</p>
+<p>// <code>transformRequest</code>允许在请求数据发送到服务器之前对其进行更改<br>// 这只适用于请求方法’PUT’，’POST’和’PATCH’<br>// 数组中的最后一个函数必须返回一个字符串，一个 ArrayBuffer或一个 Stream</p>
+<p>transformRequest: [function (data) {<br>// 做任何你想要的数据转换</p>
+<p>return data;<br>}],</p>
+<p>// <code>transformResponse</code>允许在 then / catch之前对响应数据进行更改<br>transformResponse: [function (data) {<br>// Do whatever you want to transform the data</p>
+<p>return data;<br>}],</p>
+<p>// <code>headers</code>是要发送的自定义 headers<br>headers: {‘X-Requested-With’: ‘XMLHttpRequest’},</p>
+<p>// <code>params</code>是要与请求一起发送的URL参数<br>// 必须是纯对象或URLSearchParams对象<br>params: {<br>ID: 12345<br>},</p>
+<p>// <code>paramsSerializer</code>是一个可选的函数，负责序列化<code>params</code><br>// (e.g. <a href="https://www.npmjs.com/package/qs" target="_blank" rel="external">https://www.npmjs.com/package/qs</a>, <a href="http://api.jquery.com/jquery.param/" target="_blank" rel="external">http://api.jquery.com/jquery.param/</a>)<br>paramsSerializer: function(params) {<br>return Qs.stringify(params, {arrayFormat: ‘brackets’})<br>},</p>
+<p>// <code>data</code>是要作为请求主体发送的数据<br>// 仅适用于请求方法“PUT”，“POST”和“PATCH”<br>// 当没有设置<code>transformRequest</code>时，必须是以下类型之一：<br>// - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams<br>// - Browser only: FormData, File, Blob<br>// - Node only: Stream<br>data: {<br>firstName: ‘Fred’<br>},</p>
+<p>// <code>timeout</code>指定请求超时之前的毫秒数。<br>// 如果请求的时间超过’timeout’，请求将被中止。<br>timeout: 1000,</p>
+<p>// <code>withCredentials</code>指示是否跨站点访问控制请求<br>// should be made using credentials<br>withCredentials: false, // default</p>
+<p>// `adapter’允许自定义处理请求，这使得测试更容易。<br>// 返回一个promise并提供一个有效的响应（参见[response docs]（＃response-api））<br>adapter: function (config) {<br>/<em> … </em>/<br>},</p>
+<p>// <code>auth&#39;表示应该使用 HTTP 基本认证，并提供凭据。
+// 这将设置一个</code>Authorization’头，覆盖任何现有的<code>Authorization&#39;自定义头，使用</code>headers`设置。<br>auth: {<br>username: ‘janedoe’,<br>password: ‘s00pers3cret’<br>},</p>
+<p>// “responseType”表示服务器将响应的数据类型<br>// 包括 ‘arraybuffer’, ‘blob’, ‘document’, ‘json’, ‘text’, ‘stream’<br>responseType: ‘json’, // default</p>
+<p>//<code>xsrfCookieName</code>是要用作 xsrf 令牌的值的cookie的名称<br>xsrfCookieName: ‘XSRF-TOKEN’, // default</p>
+<p>// <code>xsrfHeaderName</code>是携带xsrf令牌值的http头的名称<br>xsrfHeaderName: ‘X-XSRF-TOKEN’, // default</p>
+<p>// <code>onUploadProgress</code>允许处理上传的进度事件<br>onUploadProgress: function (progressEvent) {<br>// 使用本地 progress 事件做任何你想要做的<br>},</p>
+<p>// <code>onDownloadProgress</code>允许处理下载的进度事件<br>onDownloadProgress: function (progressEvent) {<br>// Do whatever you want with the native progress event<br>},</p>
+<p>// <code>maxContentLength</code>定义允许的http响应内容的最大大小<br>maxContentLength: 2000,</p>
+<p>// <code>validateStatus</code>定义是否解析或拒绝给定的promise<br>// HTTP响应状态码。如果<code>validateStatus</code>返回<code>true</code>（或被设置为<code>null</code> promise将被解析;否则，promise将被<br>  // 拒绝。<br>validateStatus: function (status) {<br>return status &gt;= 200 &amp;&amp; status &lt; 300; // default<br>},</p>
+<p>// <code>maxRedirects</code>定义在node.js中要遵循的重定向的最大数量。<br>// 如果设置为0，则不会遵循重定向。<br>maxRedirects: 5, // 默认</p>
+<p>// <code>httpAgent</code>和<code>httpsAgent</code>用于定义在node.js中分别执行http和https请求时使用的自定义代理。<br>// 允许配置类似<code>keepAlive</code>的选项，<br>// 默认情况下不启用。<br>httpAgent: new http.Agent({ keepAlive: true }),<br>httpsAgent: new https.Agent({ keepAlive: true }),</p>
+<p>// ‘proxy’定义代理服务器的主机名和端口<br>// <code>auth</code>表示HTTP Basic auth应该用于连接到代理，并提供credentials。<br>// 这将设置一个<code>Proxy-Authorization</code> header，覆盖任何使用<code>headers</code>设置的现有的<code>Proxy-Authorization</code> 自定义 headers。<br>proxy: {<br>host: ‘127.0.0.1’,<br>port: 9000,<br>auth: : {<br>username: ‘mikeymike’,<br>password: ‘rapunz3l’<br>}<br>},</p>
+<p>// “cancelToken”指定可用于取消请求的取消令牌<br>// (see Cancellation section below for details)<br>cancelToken: new CancelToken(function (cancel) {<br>})<br>}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="洋仔 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue请求-axios/" rel="tag"><i class="fa fa-tag"></i> vue请求 axios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/21/runzip安装/" rel="next" title="runzip安装">
+                <i class="fa fa-chevron-left"></i> runzip安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/21/nginx部署个人项目/" rel="prev" title="nginx部署个人项目">
+                nginx部署个人项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到：</div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2247e52dc0cb0"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="洋仔" />
+            
+              <p class="site-author-name" itemprop="name">洋仔</p>
+              <p class="site-description motion-element" itemprop="description">每一个矜持淡定的现在，都有一个很傻很天真的曾经。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ericcy/Ericcy.github.io" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                    
+                      <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/mqyqingfeng/Blog" title="js资料" target="_blank">js资料</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <embed src="//music.163.com/style/swf/widget.swf?sid=496870798&type=2&auto=1&width=320&height=66" width="300" height="86"  allowNetworking="all"></embed>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#axios-API-介绍"><span class="nav-number">1.</span> <span class="nav-text">axios API 介绍</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">洋仔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由  强力驱动版权所有</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题一切解释权，洋哥说的算！</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2148609"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  
+    
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script type="text/javascript" src="/js/src/algolia.js?v=5.1.3"></script>
+
+  
+  
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+</body>
+</html>
