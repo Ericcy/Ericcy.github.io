@@ -99,18 +99,18 @@
 
 
 
-<meta name="description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： cd /tmp * wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz * tar zxvf lrzsz-0.12.20.tar.gz  * cd lrzsz-0.12.20 * ./configure &amp;amp;&amp;amp;">
+<meta name="description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： 123451. cd /tmp2. wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz3. tar zxvf lrzsz-0.12.20.tar.gz 4. cd lrzsz-0.12.205. ./configure &amp;am">
 <meta name="keywords" content="linux centos7 工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rz和rs">
 <meta property="og:url" content="http://yoursite.com/2018/11/21/rz和rs/index.html">
 <meta property="og:site_name" content="Ericcy">
-<meta property="og:description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： cd /tmp * wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz * tar zxvf lrzsz-0.12.20.tar.gz  * cd lrzsz-0.12.20 * ./configure &amp;amp;&amp;amp;">
+<meta property="og:description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： 123451. cd /tmp2. wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz3. tar zxvf lrzsz-0.12.20.tar.gz 4. cd lrzsz-0.12.205. ./configure &amp;am">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-20T23:44:49.183Z">
+<meta property="og:updated_time" content="2018-11-20T23:49:44.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rz和rs">
-<meta name="twitter:description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： cd /tmp * wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz * tar zxvf lrzsz-0.12.20.tar.gz  * cd lrzsz-0.12.20 * ./configure &amp;amp;&amp;amp;">
+<meta name="twitter:description" content="Linux系统下安装rz/sz命令及使用说明1.软件安装1）编译安装root 账号登陆后，依次执行以下命令： 123451. cd /tmp2. wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz3. tar zxvf lrzsz-0.12.20.tar.gz 4. cd lrzsz-0.12.205. ./configure &amp;am">
 
 
 
@@ -411,15 +411,10 @@
 
       
         <h1 id="Linux系统下安装rz-sz命令及使用说明"><a href="#Linux系统下安装rz-sz命令及使用说明" class="headerlink" title="Linux系统下安装rz/sz命令及使用说明"></a>Linux系统下安装rz/sz命令及使用说明</h1><h2 id="1-软件安装"><a href="#1-软件安装" class="headerlink" title="1.软件安装"></a>1.软件安装</h2><h3 id="1）编译安装"><a href="#1）编译安装" class="headerlink" title="1）编译安装"></a>1）编译安装</h3><pre><code>root 账号登陆后，依次执行以下命令：
-cd /tmp
-* wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
-* tar zxvf lrzsz-0.12.20.tar.gz 
-* cd lrzsz-0.12.20
-* ./configure &amp;&amp; make &amp;&amp; make install
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> cd /tmp</span><br><span class="line"><span class="number">2.</span> wget http:<span class="comment">//www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz</span></span><br><span class="line"><span class="number">3.</span> tar zxvf lrzsz<span class="number">-0.12</span><span class="number">.20</span>.tar.gz </span><br><span class="line"><span class="number">4.</span> cd lrzsz<span class="number">-0.12</span><span class="number">.20</span></span><br><span class="line"><span class="number">5.</span> ./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
 上面安装过程默认把lsz和lrz安装到了/usr/local/bin/目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz/sz：
-* cd /usr/bin
-* ln -s /usr/local/bin/lrz rz
-* ln -s /usr/local/bin/lsz sz
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> cd /usr/bin</span><br><span class="line"><span class="number">2.</span> ln -s /usr/local/bin/lrz rz</span><br><span class="line"><span class="number">3.</span> ln -s /usr/local/bin/lsz sz</span><br></pre></td></tr></table></figure>
 </code></pre><h3 id="2）yum安装"><a href="#2）yum安装" class="headerlink" title="2）yum安装"></a>2）yum安装</h3><pre><code>root 账号登陆后执行以下命令：
 yum install -y lrzsz
 </code></pre><h2 id="2-用说明"><a href="#2-用说明" class="headerlink" title="2.用说明"></a>2.用说明</h2><pre><code>sz命令发送文件到本地：
